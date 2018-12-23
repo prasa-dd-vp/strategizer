@@ -59,131 +59,138 @@ def show_html(request):
 
 	return render(request,'weekend/week_end.html')
 
-
 def high(request):
-	if request.method == "GET":
-		Weekend6 = []
-		Weekend5 = []
-		Weekend4 = []
-		Weekend3 = []
-		Weekend2 = []
-		Weekend1 = []
-		today = date.today()
-		data_complete = pd.read_csv("data_complete"+str(today)+".csv")
-		data_complete = data_complete.set_index('Unnamed: 0') 
-		print("Data_complete")
-		print(data_complete)
-		print("FNO Stocks")
-		print(fnoStocks)
-		#weekend
-		for stock in fnoStocks:
-			try:
-#Weekend High
-				if (data_complete.loc[data_complete['Symbol'] == stock]['High'][6]<
-					data_complete.loc[data_complete['Symbol'] == stock]['High'][5]<
-					data_complete.loc[data_complete['Symbol'] == stock]['High'][4]<
-					data_complete.loc[data_complete['Symbol'] == stock]['High'][3]<
-					data_complete.loc[data_complete['Symbol'] == stock]['High'][2]<
-					data_complete.loc[data_complete['Symbol'] == stock]['High'][1]<
-					data_complete.loc[data_complete['Symbol'] == stock]['High'][0]):
-					Weekend6.append(stock)
-				
-				if (data_complete.loc[data_complete['Symbol'] == stock]['High'][6]<
-					data_complete.loc[data_complete['Symbol'] == stock]['High'][5]<
-					data_complete.loc[data_complete['Symbol'] == stock]['High'][4]<
-					data_complete.loc[data_complete['Symbol'] == stock]['High'][3]<
-					data_complete.loc[data_complete['Symbol'] == stock]['High'][2]<
-					data_complete.loc[data_complete['Symbol'] == stock]['High'][1] and
-					stock not in Weekend6):
-					Weekend5.append(stock)
-				
-				if (data_complete.loc[data_complete['Symbol'] == stock]['High'][6]<
-					data_complete.loc[data_complete['Symbol'] == stock]['High'][5]<
-					data_complete.loc[data_complete['Symbol'] == stock]['High'][4]<
-					data_complete.loc[data_complete['Symbol'] == stock]['High'][3]<
-					data_complete.loc[data_complete['Symbol'] == stock]['High'][2] and
-					stock not in Weekend5 and stock not in Weekend6):
-					Weekend4.append(stock)
-				
-				if (data_complete.loc[data_complete['Symbol'] == stock]['High'][6]<
-					data_complete.loc[data_complete['Symbol'] == stock]['High'][5]<
-					data_complete.loc[data_complete['Symbol'] == stock]['High'][4]<
-					data_complete.loc[data_complete['Symbol'] == stock]['High'][3] and
-					stock not in Weekend4 and stock not in Weekend5 and stock not in Weekend6):
-					Weekend3.append(stock)
-				
-				if (data_complete.loc[data_complete['Symbol'] == stock]['High'][6]<
-					data_complete.loc[data_complete['Symbol'] == stock]['High'][5]<
-					data_complete.loc[data_complete['Symbol'] == stock]['High'][4] and
-					stock not in Weekend3 and stock not in Weekend4 and stock not in Weekend5 and stock not in Weekend6):
-					Weekend2.append(stock)
-				
-				if (data_complete.loc[data_complete['Symbol'] == stock]['High'][6]<
-					data_complete.loc[data_complete['Symbol'] == stock]['High'][5] and
-					stock not in Weekend2 and stock not in Weekend3 and stock not in Weekend4 and stock not in Weekend5 and stock not in Weekend6):
-					Weekend1.append(stock)
-
-
-			except:
-				pass
-
-		#Fetch stock values  
-		print("=================================================")
-		print('Stocks in Weekend High Level 1')
-		print(*Weekend1,sep ='   ')
-		print("=================================================")
-		print('Stocks in Weekend High Level 2')
-		print(*Weekend2,sep ='   ')
-		print("=================================================")
-		print('Stocks in Weekend High Level 3')
-		print(*Weekend3,sep ='   ')
-		print("=================================================")
-		print('Stocks in Weekend High Level 4')
-		print(*Weekend4,sep ='   ')
-		print("=================================================")
-		print('Stocks in Weekend High Level 5')
-		print(*Weekend5,sep ='   ')
-		print("=================================================")
-		print('Stocks in Weekend High Level 6')
-		print(*Weekend6,sep ='   ')
-		
-		#Initialise Weekend High Dictionary
-		weekendhigh = {}
-		weekendhigh["Weekend_6"] = {}
-		weekendhigh["Weekend_5"] = {}
-		weekendhigh["Weekend_4"] = {}
-		weekendhigh["Weekend_3"] = {}
-		weekendhigh["Weekend_2"] = {}
-		weekendhigh["Weekend_1"] = {}
+    if request.method == "GET":
+        Weekend6 = []
+        Weekend5 = []
+        Weekend4 = []
+        Weekend3 = []
+        Weekend2 = []
+        Weekend1 = []
+        today = date.today()
+        data_complete = pd.read_csv("data_complete"+str(today)+".csv")
+        data_complete = data_complete.set_index('Unnamed: 0') 
+        print("Data_complete")
+        print(data_complete)
+        print("FNO Stocks")
+        print(fnoStocks)
+        #weekend
+        for stock in fnoStocks:
+            try:
+            #Weekend High
+                if (data_complete.loc[data_complete['Symbol'] == stock]['High'][6]<
+                    data_complete.loc[data_complete['Symbol'] == stock]['High'][5]<
+                    data_complete.loc[data_complete['Symbol'] == stock]['High'][4]<
+                    data_complete.loc[data_complete['Symbol'] == stock]['High'][3]<
+                    data_complete.loc[data_complete['Symbol'] == stock]['High'][2]<
+                    data_complete.loc[data_complete['Symbol'] == stock]['High'][1]<
+                    data_complete.loc[data_complete['Symbol'] == stock]['High'][0]):
+                    Weekend6.append(stock)
+                
+                if (data_complete.loc[data_complete['Symbol'] == stock]['High'][6]<
+                    data_complete.loc[data_complete['Symbol'] == stock]['High'][5]<
+                    data_complete.loc[data_complete['Symbol'] == stock]['High'][4]<
+                    data_complete.loc[data_complete['Symbol'] == stock]['High'][3]<
+                    data_complete.loc[data_complete['Symbol'] == stock]['High'][2]<
+                    data_complete.loc[data_complete['Symbol'] == stock]['High'][1] and
+                    stock not in Weekend6):
+                    Weekend5.append(stock)
+                
+                if (data_complete.loc[data_complete['Symbol'] == stock]['High'][6]<
+                    data_complete.loc[data_complete['Symbol'] == stock]['High'][5]<
+                    data_complete.loc[data_complete['Symbol'] == stock]['High'][4]<
+                    data_complete.loc[data_complete['Symbol'] == stock]['High'][3]<
+                    data_complete.loc[data_complete['Symbol'] == stock]['High'][2] and
+                    stock not in Weekend5 and stock not in Weekend6):
+                    Weekend4.append(stock)
+                
+                if (data_complete.loc[data_complete['Symbol'] == stock]['High'][6]<
+                    data_complete.loc[data_complete['Symbol'] == stock]['High'][5]<
+                    data_complete.loc[data_complete['Symbol'] == stock]['High'][4]<
+                    data_complete.loc[data_complete['Symbol'] == stock]['High'][3] and
+                    stock not in Weekend4 and stock not in Weekend5 and stock not in Weekend6):
+                    Weekend3.append(stock)
+                
+                if (data_complete.loc[data_complete['Symbol'] == stock]['High'][6]<
+                    data_complete.loc[data_complete['Symbol'] == stock]['High'][5]<
+                    data_complete.loc[data_complete['Symbol'] == stock]['High'][4] and
+                    stock not in Weekend3 and stock not in Weekend4 and stock not in Weekend5 and stock not in Weekend6):
+                    Weekend2.append(stock)
+                
+                if (data_complete.loc[data_complete['Symbol'] == stock]['High'][6]<
+                    data_complete.loc[data_complete['Symbol'] == stock]['High'][5] and
+                    stock not in Weekend2 and stock not in Weekend3 and stock not in Weekend4 and stock not in Weekend5 and stock not in Weekend6):
+                    Weekend1.append(stock)
+            
+            
+            except:
+                pass
+        
+        #Fetch stock values  
+        print("=================================================")
+        print('Stocks in Weekend High Level 1')
+        print(*Weekend1,sep ='   ')
+        print("=================================================")
+        print('Stocks in Weekend High Level 2')
+        print(*Weekend2,sep ='   ')
+        print("=================================================")
+        print('Stocks in Weekend High Level 3')
+        print(*Weekend3,sep ='   ')
+        print("=================================================")
+        print('Stocks in Weekend High Level 4')
+        print(*Weekend4,sep ='   ')
+        print("=================================================")
+        print('Stocks in Weekend High Level 5')
+        print(*Weekend5,sep ='   ')
+        print("=================================================")
+        print('Stocks in Weekend High Level 6')
+        print(*Weekend6,sep ='   ')
+        
+        #Initialise Weekend High Dictionary
+        weekendhigh = {}
+        weekendhigh["Weekend_6"] = {}
+        weekendhigh["Weekend_5"] = {}
+        weekendhigh["Weekend_4"] = {}
+        weekendhigh["Weekend_3"] = {}
+        weekendhigh["Weekend_2"] = {}
+        weekendhigh["Weekend_1"] = {}
         #Add price info to the result
-		for stock in Weekend6:
-			price = data_complete.loc[data_complete['Symbol'] == stock]['High'][6]
-			price_info = {stock:price}
-			weekendhigh["Weekend_6"].update(price_info)
-		for stock in Weekend5:
-			price = data_complete.loc[data_complete['Symbol'] == stock]['High'][6]
-			price_info = {stock:price}
-			weekendhigh["Weekend_5"].update(price_info)
-		for stock in Weekend4:
-			price = data_complete.loc[data_complete['Symbol'] == stock]['High'][6]
-			price_info = {stock:price}
-			weekendhigh["Weekend_4"].update(price_info)
-		for stock in Weekend3:
-			price = data_complete.loc[data_complete['Symbol'] == stock]['High'][6]
-			price_info = {stock:price}
-			weekendhigh["Weekend_3"].update(price_info)
-		for stock in Weekend2:
-			price = data_complete.loc[data_complete['Symbol'] == stock]['High'][6]
-			price_info = {stock:price}
-			weekendhigh["Weekend_2"].update(price_info)
-		for stock in Weekend1:
-			price = data_complete.loc[data_complete['Symbol'] == stock]['High'][6]
-			price_info = {stock:price}
-			weekendhigh["Weekend_1"].update(price_info)
+        for stock in Weekend6:
+            price = data_complete.loc[data_complete['Symbol'] == stock]['High'][6]
+            stoploss = data_complete.loc[data_complete['Symbol'] == stock]['Low'][6]
+            price_info = {stock:[price,stoploss]}
+            weekendhigh["Weekend_6"].update(price_info)
+        for stock in Weekend5:
+            price = data_complete.loc[data_complete['Symbol'] == stock]['High'][6]
+            stoploss = data_complete.loc[data_complete['Symbol'] == stock]['Low'][6]
+            price_info = {stock:[price,stoploss]}
+            weekendhigh["Weekend_5"].update(price_info)
+        for stock in Weekend4:
+            price = data_complete.loc[data_complete['Symbol'] == stock]['High'][6]
+            stoploss = data_complete.loc[data_complete['Symbol'] == stock]['Low'][6]
+            price_info = {stock:[price,stoploss]}
+            weekendhigh["Weekend_4"].update(price_info)
+        for stock in Weekend3:
+            price = data_complete.loc[data_complete['Symbol'] == stock]['High'][6]
+            stoploss = data_complete.loc[data_complete['Symbol'] == stock]['Low'][6]
+            price_info = {stock:[price,stoploss]}
+            weekendhigh["Weekend_3"].update(price_info)
+        for stock in Weekend2:
+            price = data_complete.loc[data_complete['Symbol'] == stock]['High'][6]
+            stoploss = data_complete.loc[data_complete['Symbol'] == stock]['Low'][6]
+            price_info = {stock:[price,stoploss]}
+            weekendhigh["Weekend_2"].update(price_info)
+        for stock in Weekend1:
+            price = data_complete.loc[data_complete['Symbol'] == stock]['High'][6]
+            stoploss = data_complete.loc[data_complete['Symbol'] == stock]['Low'][6]
+            price_info = {stock:[price,stoploss]}
+            weekendhigh["Weekend_1"].update(price_info)
+        
+        
+        
+    return JsonResponse(weekendhigh)
 
 
-
-	return JsonResponse(weekendhigh)
 
 def low(request):
     if request.method == "GET":
@@ -284,27 +291,35 @@ def low(request):
         #Add price info to the result
         for stock in Weekend6_Low:
             price = data_complete.loc[data_complete['Symbol'] == stock]['Low'][6]
-            price_info = {stock:price}
+            stoploss = data_complete.loc[data_complete['Symbol'] == stock]['High'][6]
+            price_info = {stock:[price,stoploss]}
             weekendlow["Weekend_6"].update(price_info)
         for stock in Weekend5_Low:
             price = data_complete.loc[data_complete['Symbol'] == stock]['Low'][6]
-            price_info = {stock:price}
+            stoploss = data_complete.loc[data_complete['Symbol'] == stock]['High'][6]
+            price_info = {stock:[price,stoploss]}
             weekendlow["Weekend_5"].update(price_info)
         for stock in Weekend4_Low:
             price = data_complete.loc[data_complete['Symbol'] == stock]['Low'][6]
-            price_info = {stock:price}
+            stoploss = data_complete.loc[data_complete['Symbol'] == stock]['High'][6]
+            price_info = {stock:[price,stoploss]}
             weekendlow["Weekend_4"].update(price_info)
         for stock in Weekend3_Low:
             price = data_complete.loc[data_complete['Symbol'] == stock]['Low'][6]
-            price_info = {stock:price}
+            stoploss = data_complete.loc[data_complete['Symbol'] == stock]['High'][6]
+            price_info = {stock:[price,stoploss]}
             weekendlow["Weekend_3"].update(price_info)
         for stock in Weekend2_Low:
             price = data_complete.loc[data_complete['Symbol'] == stock]['Low'][6]
-            price_info = {stock:price}
+            stoploss = data_complete.loc[data_complete['Symbol'] == stock]['High'][6]
+            price_info = {stock:[price,stoploss]}
             weekendlow["Weekend_2"].update(price_info)
         for stock in Weekend1_Low:
             price = data_complete.loc[data_complete['Symbol'] == stock]['Low'][6]
-            price_info = {stock:price}
-            weekendlow["Weekend_1"].update(price_info)        
+            stoploss = data_complete.loc[data_complete['Symbol'] == stock]['High'][6]
+            price_info = {stock:[price,stoploss]}
+            weekendlow["Weekend_1"].update(price_info)  
+            
+        print(weekendlow)
 
     return JsonResponse(weekendlow)
