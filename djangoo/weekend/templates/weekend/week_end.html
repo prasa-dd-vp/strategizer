@@ -32,9 +32,10 @@
                                 $('#cont').append(`<table class="table">
                                                   <thead>
                                                   <tr>
-                                                  <th>Stock</th>
-                                                  <th>High</th>
                                                   <th>Date</th>
+                                                  <th>Stock</th>
+                                                  <th>Buy above</th>
+                                                  <th>Stop loss</th>
                                                   </tr>
                                                   </thead>
                                                   <tbody class = "tbody" id =`+key+` >
@@ -42,7 +43,7 @@
                                                   </table>`);
                                 console.log(key);
                                 $.each(data[key], function(key1,value1) {
-                                    $('#'+key).append(`<tr><td>`+key1+`</td><td>`+value1+`</td><td>`+$yesterday+`</td></tr>`);
+                                    $('#'+key).append(`<tr><td>`+$yesterday+`</td><td>`+key1+`</td><td>`+value1[0]+`</td><td>`+value1[1]+`</td></tr>`);
                                 });
                             }); 
                             }
@@ -62,9 +63,10 @@
                                 $('#cont').append(`<table class="table">
                                                   <thead>
                                                   <tr>
-                                                  <th>Stock</th>
-                                                  <th>Low</th>
                                                   <th>Date</th>
+                                                  <th>Short below</th>
+                                                  <th>Stock</th>
+                                                  <th>Stop loss</th>
                                                   </tr>
                                                   </thead>
                                                   <tbody class = "tbody" id =`+key+` >
@@ -72,7 +74,7 @@
                                                   </table>`);
                                 console.log(key);
                                 $.each(data[key], function(key1,value1) {
-                                    $('#'+key).append(`<tr><td>`+key1+`</td><td>`+value1+`</td><td>`+$yesterday+`</td></tr>`);
+                                    $('#'+key).append(`<tr><td>`+$yesterday+`</td><td>`+key1+`</td><td>`+value1[0]+`</td><td>`+value1[1]+`</td></tr>`);
                                 });
                             }); 
                             }
